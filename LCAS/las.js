@@ -11,11 +11,13 @@ class Carousel {
       this.itemClass = this.element.dataset.itemClass;
       this.prevClass = this.element.dataset.prevClass;
       this.nextClass = this.element.dataset.nextClass;
+      this.indicatorClass = this.element.dataset.indicatorClass;
 
       // Find elements using the class names from data attributes
       this.carouselInner = this.element.querySelector(`.${this.innerClass}`);
       this.prevButton = this.element.querySelector(`.${this.prevClass}`);
       this.nextButton = this.element.querySelector(`.${this.nextClass}`);
+      this.indicator = this.element.querySelector(`.${this.indicatorClass}`);
 
       this.setThePoolInRandom();
       if (this.remainingItemsPool.length > 0) {
@@ -88,8 +90,21 @@ class Carousel {
       }
    }
 
+   showIndicator() {
+      if (this.indicator) {
+         this.indicator.style.display = 'flex';
+      }
+   }
+
+   hideIndicator() {
+      if (this.indicator) {
+         this.indicator.style.display = 'none';
+      }
+   }
+
    loadNewItem(index) {
       const poolItem = this.remainingItemsPool[index];
+      this.showIndicator();
       this.loadItem(poolItem, (loadedItem_callback) => {
          this.carouselInner.appendChild(loadedItem_callback);
          this.loadedItems.add(index);
@@ -97,6 +112,7 @@ class Carousel {
          const offset = -this.currentItemIndex * 100;
          this.carouselInner.style.transform = `translateX(${offset}%)`;
          this.isSliding = false;
+         this.hideIndicator();
          this.updateControls();
       });
    }
@@ -106,6 +122,7 @@ class Carousel {
       const offset = -this.currentItemIndex * 100;
       this.carouselInner.style.transform = `translateX(${offset}%)`;
       this.isSliding = false;
+      this.hideIndicator();
       this.updateControls();
    }
 
