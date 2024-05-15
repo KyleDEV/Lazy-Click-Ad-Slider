@@ -114,13 +114,13 @@ class Carousel {
       const poolItem = this.remainingItemsPool[index];
       this.showIndicator();
       //setTimeOut for Network delay test
-      setTimeout(() => {
+      // setTimeout(() => {
          this.loadItem(poolItem, (loadedItem_callback) => {
             this.carouselInner.appendChild(loadedItem_callback);
             this.loadedItems.add(index);
             this.slideToLoadedItem(index);
          });
-      }, 1500); // Simulate network delay
+      // }, 1500); // Simulate network delay
    }
 
    slideToLoadedItem(index) {
