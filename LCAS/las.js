@@ -67,12 +67,10 @@ class Carousel {
    }
 
    loadInitialItem() {
-      this.showIndicator(); // Show indicator before loading the initial item
       const firstPoolItem = this.remainingItemsPool[this.currentItemIndex];
       this.loadItem(firstPoolItem, (loadedItem_callback) => {
          this.carouselInner.appendChild(loadedItem_callback);
          this.loadedItems.add(this.currentItemIndex);  // Mark the first item as loaded
-         this.hideIndicator(); // Hide indicator after loading the item
          this.updateControls();
       });
    }
@@ -94,39 +92,44 @@ class Carousel {
    showIndicator() {
       if (this.indicator) {
          this.indicator.style.display = 'flex';
+         this.ChangeVisibilityOfCurrentItem(false);
       }
    }
 
    hideIndicator() {
       if (this.indicator) {
          this.indicator.style.display = 'none';
+         this.ChangeVisibilityOfCurrentItem(true);
+      }
+   }
+
+   ChangeVisibilityOfCurrentItem(isVisible) {
+      const currentItem = this.carouselInner.children[this.currentItemIndex];
+      if (currentItem) {
+         currentItem.style.visibility = isVisible ? 'visible' : 'hidden';
       }
    }
 
    loadNewItem(index) {
       const poolItem = this.remainingItemsPool[index];
       this.showIndicator();
+      //setTimeOut for Network delay test
       setTimeout(() => {
          this.loadItem(poolItem, (loadedItem_callback) => {
             this.carouselInner.appendChild(loadedItem_callback);
             this.loadedItems.add(index);
-            this.currentItemIndex = index;
-            const offset = -this.currentItemIndex * 100;
-            this.carouselInner.style.transform = `translateX(${offset}%)`;
-            this.isSliding = false;
-            this.hideIndicator();
-            this.updateControls();
+            this.slideToLoadedItem(index);
          });
-      }, 500); // Simulate network delay
+      }, 1500); // Simulate network delay
    }
 
    slideToLoadedItem(index) {
-
-         this.currentItemIndex = index;
-         const offset = -this.currentItemIndex * 100;
-         this.carouselInner.style.transform = `translateX(${offset}%)`;
-         this.isSliding = false;
-         this.updateControls();
+      this.currentItemIndex = index;
+      const offset = -this.currentItemIndex * 100;
+      this.carouselInner.style.transform = `translateX(${offset}%)`;
+      this.isSliding = false;
+      this.hideIndicator();
+      this.updateControls();
    }
 
    slideItem(index) {
