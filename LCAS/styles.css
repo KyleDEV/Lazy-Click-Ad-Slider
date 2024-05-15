@@ -27,6 +27,10 @@
     justify-content: center;
 }
 
+.lcas-carousel-item a {
+    width: 100%;
+}
+
 .lcas-carousel-item img {
     width: 100%;
     height: 100%;
@@ -54,8 +58,8 @@
 
 .lcas-prev {
     left: 10px;
-    /* Initially hide the previous button */
     display: none;
+    /* Initially hide the previous button */
 }
 
 .lcas-next {
