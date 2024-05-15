@@ -12,12 +12,21 @@
         }
 
         .site-widget-container {
-            width: 100%;
             background-color: aquamarine;
             margin: 0;
             margin-bottom: 50px;
-            padding: 1em;
+            padding: 5px;
             box-sizing: border-box;
+        }
+
+        #first-container {
+            width: 100%;
+            height: 17%;
+        }
+
+        #second-container {
+            width: 30%;
+            height: 30%;
         }
 
     </style>
@@ -26,20 +35,45 @@
 
 <body>
     <!-- a site widget container -->
-    <div class="site-widget-container" style="height: 30%;">
+    <div id="first-container" class="site-widget-container">
         <!-- Ad widget -->
         <div class="lcas-carousel-widget" data-items='[
-                                                        {"src": "images/L-1.jpg", "href": "https://kyleplanet.com/"},
-                                                        {"src": "images/L-2.gif", "href": "https://kyleplanet.com/en/"},
-                                                        {"src": "images/L-3.gif", "href": "https://kyleplanet.com/"},
-                                                        {"src": "images/L-4.gif", "href": "https://kyleplanet.com/en/"},
-                                                        {"src": "images/L-5.gif", "href": "https://kyleplanet.com/"},
-                                                        {"src": "images/L-6.gif", "href": "https://kyleplanet.com/en/"},
-                                                        {"src": "images/L-7.jpg", "href": "https://kyleplanet.com/en/"},
-                                                        {"src": "images/L-8.gif", "href": "https://kyleplanet.com/"},
-                                                        {"src": "images/L-9.jpg", "href": "https://kyleplanet.com/en/"},
-                                                        {"src": "images/L-10.jpg", "href": "https://kyleplanet.com/"}
+                                                    {"src": "images/L-1.jpg", "href": "https://kyleplanet.com/"},
+                                                    {"src": "images/L-2.gif", "href": "https://kyleplanet.com/en/"},
+                                                    {"src": "images/L-3.gif", "href": "https://kyleplanet.com/"},
+                                                    {"src": "images/L-4.gif", "href": "https://kyleplanet.com/en/"},
+                                                    {"src": "images/L-5.gif", "href": "https://kyleplanet.com/"},
+                                                    {"src": "images/L-6.gif", "href": "https://kyleplanet.com/en/"},
+                                                    {"src": "images/L-7.jpg", "href": "https://kyleplanet.com/en/"},
+                                                    {"src": "images/L-8.gif", "href": "https://kyleplanet.com/"},
+                                                    {"src": "images/L-9.jpg", "href": "https://kyleplanet.com/en/"},
+                                                    {"src": "images/L-10.jpg", "href": "https://kyleplanet.com/"}
                                                     ]' data-inner-class="lcas-carousel-inner"
+            data-item-class="lcas-carousel-item" data-prev-class="lcas-prev-btn" data-next-class="lcas-next-btn"
+            data-indicator-class="lcas-indicator">
+            <div class="lcas-carousel-viewport">
+                <div class="lcas-carousel-inner"></div>
+            </div>
+            <div class="lcas-indicator">
+                <img src="images/lcas-indicator.gif" alt="Loading...">
+            </div>
+            <div class="lcas-prev-btn">
+                <span>&#10094;</span>
+            </div>
+            <div class="lcas-next-btn">
+                <span>&#10095;</span>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- a site widget container -->
+    <div id="second-container" class="site-widget-container">
+        <!-- Ad widget -->
+        <div class="lcas-carousel-widget" data-items='[
+                                                        {"src": "images/S-1.jpg", "href": "https://kyleplanet.com/"},
+                                                        {"src": "images/S-2.jpg", "href": "https://kyleplanet.com/en/"}
+                                                        ]' data-inner-class="lcas-carousel-inner"
             data-item-class="lcas-carousel-item" data-prev-class="lcas-prev-btn" data-next-class="lcas-next-btn"
             data-indicator-class="lcas-indicator">
             <div class="lcas-carousel-viewport">
