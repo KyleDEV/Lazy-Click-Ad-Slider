@@ -50,7 +50,6 @@ function loadItem(item, callback) {
 }
 
 function updateControls() {
-   const items = JSON.parse(document.querySelector('.lcas-carousel').dataset.items);
    const prevControl = document.querySelector('.lcas-prev');
    const nextControl = document.querySelector('.lcas-next');
 
@@ -89,7 +88,7 @@ function slideItem(index) {
 
    if (!loadedItems.has(index)) {
       const item = items[index];
-      const newItem = loadItem(item, (loadedItem) => {
+      loadItem(item, (loadedItem) => {
          carouselInner.appendChild(loadedItem);
          loadedItems.add(index);
          hideIndicator();
@@ -117,7 +116,7 @@ window.onload = () => {
    initializeItems();
    const initialItem = getRandomItem();
    if (initialItem) {
-      const newItem = loadItem(initialItem, (loadedItem) => {
+      loadItem(initialItem, (loadedItem) => {
          const carouselInner = document.querySelector('.lcas-carousel-inner');
          carouselInner.appendChild(loadedItem);
          carouselInner.removeChild(carouselInner.firstChild);
