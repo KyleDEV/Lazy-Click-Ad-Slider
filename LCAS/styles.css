@@ -49,23 +49,33 @@
 }
 
 .lcas-carousel-control {
+    width: 80px;
+    height: 100%;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+
     font-size: 2rem;
     background: rgba(0, 0, 0, 0.5);
     color: white;
     cursor: pointer;
-    padding: 10px;
-    z-index: 1;
+    z-index: 100;
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 .lcas-prev {
-    left: 10px;
-    display: none;
+    left: 0px;
     /* Initially hide the previous button */
+    display: none;
+    justify-content: left;
+    padding-left: 15px;
 }
 
 .lcas-next {
-    right: 10px;
+    right: 0px;
+    justify-content: right;
+    padding-right: 15px;
 }

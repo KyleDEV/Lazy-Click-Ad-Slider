@@ -58,14 +58,14 @@ function updateControls() {
    if (currentItemIndex === 0 && remainingItemsPool.length > 0) {
       prevControl.style.display = 'none';
    } else {
-      prevControl.style.display = 'block';
+      prevControl.style.display = 'flex';  // Ensure it uses flex display
    }
 
    // Show or hide the next button based on the remaining items pool
    if (remainingItemsPool.length === 0) {
       nextControl.style.display = 'none';
    } else {
-      nextControl.style.display = 'block';
+      nextControl.style.display = 'flex';  // Ensure it uses flex display
    }
 }
 
