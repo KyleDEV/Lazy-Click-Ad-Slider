@@ -16,20 +16,6 @@ function shuffleArray(array) {
    return array;
 }
 
-function showIndicator() {
-   const indicator = document.querySelector('.lcas-indicator');
-   if (indicator) {
-      indicator.style.display = 'flex';
-   }
-}
-
-function hideIndicator() {
-   const indicator = document.querySelector('.lcas-indicator');
-   if (indicator) {
-      indicator.style.display = 'none';
-   }
-}
-
 function loadItem(item, callback) {
    const newItem = document.createElement('div');
    newItem.className = 'lcas-carousel-item';
@@ -51,14 +37,12 @@ function updateControls() {
    const prevControl = document.querySelector('.lcas-prev');
    const nextControl = document.querySelector('.lcas-next');
 
-   // Show or hide the previous button based on the current item index
    if (currentItemIndex === 0) {
       prevControl.style.display = 'none';
    } else {
       prevControl.style.display = 'flex';
    }
 
-   // Show or hide the next button based on the remaining items pool
    if (remainingItemsPool.length === 0) {
       nextControl.style.display = 'none';
    } else {
@@ -81,14 +65,11 @@ function slideItem(index) {
       index = 0;
    }
 
-   showIndicator();
-
    if (!loadedItems.has(index)) {
       const item = remainingItemsPool[index];
       loadItem(item, (loadedItem) => {
          carouselInner.appendChild(loadedItem);
          loadedItems.add(index);
-         hideIndicator();
          setTimeout(() => {
             currentItemIndex = index;
             const offset = -currentItemIndex * 100;
@@ -98,7 +79,6 @@ function slideItem(index) {
          }, 500);
       });
    } else {
-      hideIndicator();
       currentItemIndex = index;
       const offset = -currentItemIndex * 100;
       carouselInner.style.transform = `translateX(${offset}%)`;
@@ -117,12 +97,10 @@ window.onload = () => {
          const carouselInner = document.querySelector('.lcas-carousel-inner');
          carouselInner.appendChild(loadedItem);
          carouselInner.removeChild(carouselInner.firstChild);
-         hideIndicator();
          loadedItems.add(currentItemIndex);  // Mark the first item as loaded
          updateControls();
       });
    } else {
-      // In case there are no items, ensure the controls are updated
       updateControls();
    }
 }

@@ -41,6 +41,11 @@
     object-fit: contain;
 }
 
+.lcas-indicator {
+    display: none;
+    /* Initially hide the indicator */
+}
+
 .lcas-indicator img {
     width: 50px;
     height: 50px;
