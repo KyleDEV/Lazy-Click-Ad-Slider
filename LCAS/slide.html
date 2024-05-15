@@ -3,25 +3,47 @@
 
 <head>
     <title>Lazy Click Ad Slide</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         .site-widget-container {
             height: 250px;
+            width: 100%;
             background-color: aquamarine;
             margin: 0;
             padding: 1em;
+            box-sizing: border-box;
         }
 
     </style>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=3">
 </head>
 
 <body>
     <div class="site-widget-container">
-
+        <div class="lcas-carousel" data-items='[
+                                                            {"src": "images/L-1.jpg", "href": "#"},
+                                                            {"src": "images/L-2.gif", "href": "#"},
+                                                            {"src": "images/L-3.gif", "href": "#"},
+                                                            {"src": "images/L-4.gif", "href": "#"},
+                                                            {"src": "images/L-5.gif", "href": "#"},
+                                                            {"src": "images/L-6.gif", "href": "#"},
+                                                            {"src": "images/L-7.jpg", "href": "#"},
+                                                            {"src": "images/L-8.gif", "href": "#"},
+                                                            {"src": "images/L-9.jpg", "href": "#"},
+                                                            {"src": "images/L-10.jpg", "href": "#"}
+                                                        ]'>
+            <div class="lcas-carousel-viewport">
+                <div class="lcas-carousel-inner">
+                    <div class="lcas-carousel-item lcas-indicator">
+                        <img src="images/lcas-indicator.gif" alt="Loading...">
+                    </div>
+                </div>
+            </div>
+            <div class="lcas-carousel-control lcas-prev" onclick="slideItem(currentItemIndex - 1)">&#10094;</div>
+            <div class="lcas-carousel-control lcas-next" onclick="slideItem(currentItemIndex + 1)">&#10095;</div>
+        </div>
     </div>
-
-
-    <script src="las.js?v=20240515"></script>
+    <script src="las.js?v=20240515-5"></script>
 </body>
 
 </html>
