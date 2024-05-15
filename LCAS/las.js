@@ -5,7 +5,15 @@ let remainingItemsPool = [];
 
 function initializeItems() {
    const items = JSON.parse(document.querySelector('.lcas-carousel').dataset.items);
-   remainingItemsPool = [...items];
+   remainingItemsPool = shuffleArray([...items]);
+}
+
+function shuffleArray(array) {
+   for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+   }
+   return array;
 }
 
 function showIndicator() {
@@ -65,19 +73,18 @@ function slideItem(index) {
    isSliding = true;
 
    const carouselInner = document.querySelector('.lcas-carousel-inner');
-   const items = JSON.parse(document.querySelector('.lcas-carousel').dataset.items);
 
    if (index < 0) {
-      index = items.length - 1;
+      index = remainingItemsPool.length - 1;
    }
-   if (index >= items.length) {
+   if (index >= remainingItemsPool.length) {
       index = 0;
    }
 
    showIndicator();
 
    if (!loadedItems.has(index)) {
-      const item = items[index];
+      const item = remainingItemsPool[index];
       loadItem(item, (loadedItem) => {
          carouselInner.appendChild(loadedItem);
          loadedItems.add(index);
@@ -105,13 +112,13 @@ function slideItem(index) {
 window.onload = () => {
    initializeItems();
    if (remainingItemsPool.length > 0) {
-      const initialItem = remainingItemsPool.shift();
+      const initialItem = remainingItemsPool[currentItemIndex];
       loadItem(initialItem, (loadedItem) => {
          const carouselInner = document.querySelector('.lcas-carousel-inner');
          carouselInner.appendChild(loadedItem);
          carouselInner.removeChild(carouselInner.firstChild);
          hideIndicator();
-         loadedItems.add(0);  // Mark the first item as loaded
+         loadedItems.add(currentItemIndex);  // Mark the first item as loaded
          updateControls();
       });
    } else {
