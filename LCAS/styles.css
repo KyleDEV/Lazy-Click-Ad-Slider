@@ -54,6 +54,8 @@
 
 .lcas-prev {
     left: 10px;
+    /* Initially hide the previous button */
+    display: none;
 }
 
 .lcas-next {

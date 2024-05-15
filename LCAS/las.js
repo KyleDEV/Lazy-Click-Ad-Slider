@@ -49,6 +49,26 @@ function loadItem(item, callback) {
    return newItem;
 }
 
+function updateControls() {
+   const items = JSON.parse(document.querySelector('.lcas-carousel').dataset.items);
+   const prevControl = document.querySelector('.lcas-prev');
+   const nextControl = document.querySelector('.lcas-next');
+
+   // Show or hide the previous button based on the current item index
+   if (currentItemIndex === 0 && remainingItemsPool.length > 0) {
+      prevControl.style.display = 'none';
+   } else {
+      prevControl.style.display = 'block';
+   }
+
+   // Show or hide the next button based on the remaining items pool
+   if (remainingItemsPool.length === 0) {
+      nextControl.style.display = 'none';
+   } else {
+      nextControl.style.display = 'block';
+   }
+}
+
 function slideItem(index) {
    if (isSliding) {
       return;
@@ -78,6 +98,7 @@ function slideItem(index) {
             const offset = -currentItemIndex * 100;
             carouselInner.style.transform = `translateX(${offset}%)`;
             isSliding = false;
+            updateControls();
          }, 500);
       });
    } else {
@@ -87,6 +108,7 @@ function slideItem(index) {
       carouselInner.style.transform = `translateX(${offset}%)`;
       setTimeout(() => {
          isSliding = false;
+         updateControls();
       }, 500);
    }
 }
@@ -101,6 +123,7 @@ window.onload = () => {
          carouselInner.removeChild(carouselInner.firstChild);
          hideIndicator();
          currentItemIndex = items.indexOf(initialItem);
+         updateControls();
       });
    }
 }
