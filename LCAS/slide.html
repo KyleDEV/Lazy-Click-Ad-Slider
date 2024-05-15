@@ -12,13 +12,11 @@
         }
 
         .site-widget-container {
-            /* height: 30%; */
+            /* height: 40%; */
             width: 100%;
-            border: solid 1px blueviolet;
-
             background-color: aquamarine;
             margin: 0;
-            margin-bottom: 50px;
+            margin-bottom: 100px;
             padding: 1em;
             box-sizing: border-box;
         }
@@ -28,10 +26,10 @@
 </head>
 
 <body>
-    <!-- a widget container that has just one ad widget-->
-    <div class="site-widget-container">
+    <!-- a site widget container -->
+    <div class="site-widget-container" style="height: 30%;">
         <!-- Ad widget -->
-        <div class="lcas-carousel" data-items='[
+        <div class="lcas-carousel-widget" data-items='[
                                                         {"src": "images/L-1.jpg", "href": "https://kyleplanet.com/"},
                                                         {"src": "images/L-2.gif", "href": "https://kyleplanet.com/en/"},
                                                         {"src": "images/L-3.gif", "href": "https://kyleplanet.com/"},
@@ -42,7 +40,8 @@
                                                         {"src": "images/L-8.gif", "href": "https://kyleplanet.com/"},
                                                         {"src": "images/L-9.jpg", "href": "https://kyleplanet.com/en/"},
                                                         {"src": "images/L-10.jpg", "href": "https://kyleplanet.com/"}
-                                                    ]'>
+                                                    ]' data-inner-class="lcas-carousel-inner"
+            data-item-class="lcas-carousel-item" data-prev-class="lcas-prev-btn" data-next-class="lcas-next-btn">
             <div class="lcas-carousel-viewport">
                 <div class="lcas-carousel-inner">
                     <div class="lcas-carousel-item lcas-indicator">
@@ -50,78 +49,14 @@
                     </div>
                 </div>
             </div>
-            <div class="lcas-carousel-control lcas-prev">
+            <div class="lcas-prev-btn">
                 <span>&#10094;</span>
             </div>
-            <div class="lcas-carousel-control lcas-next">
+            <div class="lcas-next-btn">
                 <span>&#10095;</span>
             </div>
         </div>
     </div>
-
-    <!-- a widget container that has two ad widgets-->
-    <div class="site-widget-container">
-        <!-- Ad widget -->
-        <div class="lcas-carousel" data-items='[
-                                                                            {"src": "images/L-1.jpg", "href": "https://kyleplanet.com/"},
-                                                                            {"src": "images/L-2.gif", "href": "https://kyleplanet.com/en/"},
-                                                                            {"src": "images/L-3.gif", "href": "https://kyleplanet.com/"},
-                                                                            {"src": "images/L-4.gif", "href": "https://kyleplanet.com/en/"},
-                                                                            {"src": "images/L-5.gif", "href": "https://kyleplanet.com/"},
-                                                                            {"src": "images/L-6.gif", "href": "https://kyleplanet.com/en/"},
-                                                                            {"src": "images/L-7.jpg", "href": "https://kyleplanet.com/en/"},
-                                                                            {"src": "images/L-8.gif", "href": "https://kyleplanet.com/"},
-                                                                            {"src": "images/L-9.jpg", "href": "https://kyleplanet.com/en/"},
-                                                                            {"src": "images/L-10.jpg", "href": "https://kyleplanet.com/"}
-                                                                        ]'>
-            <div class="lcas-carousel-viewport">
-                <div class="lcas-carousel-inner">
-                    <div class="lcas-carousel-item lcas-indicator">
-                        <img src="images/lcas-indicator.gif" alt="Loading...">
-                    </div>
-                </div>
-            </div>
-            <div class="lcas-carousel-control lcas-prev">
-                <span>&#10094;</span>
-            </div>
-            <div class="lcas-carousel-control lcas-next">
-                <span>&#10095;</span>
-            </div>
-        </div>
-
-        <div class="dummy" style="height: 100px;"></div>
-
-
-        <!-- Ad widget -->
-        <div class="lcas-carousel" data-items='[
-                                                            {"src": "images/L-1.jpg", "href": "https://kyleplanet.com/"},
-                                                            {"src": "images/L-2.gif", "href": "https://kyleplanet.com/en/"},
-                                                            {"src": "images/L-3.gif", "href": "https://kyleplanet.com/"},
-                                                            {"src": "images/L-4.gif", "href": "https://kyleplanet.com/en/"},
-                                                            {"src": "images/L-5.gif", "href": "https://kyleplanet.com/"},
-                                                            {"src": "images/L-6.gif", "href": "https://kyleplanet.com/en/"},
-                                                            {"src": "images/L-7.jpg", "href": "https://kyleplanet.com/en/"},
-                                                            {"src": "images/L-8.gif", "href": "https://kyleplanet.com/"},
-                                                            {"src": "images/L-9.jpg", "href": "https://kyleplanet.com/en/"},
-                                                            {"src": "images/L-10.jpg", "href": "https://kyleplanet.com/"}
-                                                        ]'>
-            <div class="lcas-carousel-viewport">
-                <div class="lcas-carousel-inner">
-                    <div class="lcas-carousel-item lcas-indicator">
-                        <img src="images/lcas-indicator.gif" alt="Loading...">
-                    </div>
-                </div>
-            </div>
-            <div class="lcas-carousel-control lcas-prev">
-                <span>&#10094;</span>
-            </div>
-            <div class="lcas-carousel-control lcas-next">
-                <span>&#10095;</span>
-            </div>
-        </div>
-
-    </div>
-
     <script src="las.js?v=20240515-10"></script>
 </body>
 

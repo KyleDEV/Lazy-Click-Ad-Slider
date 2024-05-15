@@ -5,7 +5,17 @@ class Carousel {
       this.loadedItems = new Set();
       this.isSliding = false;
       this.remainingItemsPool = [];
-      this.carouselInner = this.element.querySelector('.lcas-carousel-inner');
+
+      // Read class names from data attributes
+      this.innerClass = this.element.dataset.innerClass;
+      this.itemClass = this.element.dataset.itemClass;
+      this.prevClass = this.element.dataset.prevClass;
+      this.nextClass = this.element.dataset.nextClass;
+
+      // Find elements using the class names from data attributes
+      this.carouselInner = this.element.querySelector(`.${this.innerClass}`);
+      this.prevButton = this.element.querySelector(`.${this.prevClass}`);
+      this.nextButton = this.element.querySelector(`.${this.nextClass}`);
 
       this.setThePoolInRandom();
       if (this.remainingItemsPool.length > 0) {
@@ -15,10 +25,8 @@ class Carousel {
       }
 
       // Attach event listeners
-      const prevButton = this.element.querySelector('.lcas-prev');
-      const nextButton = this.element.querySelector('.lcas-next');
-      prevButton.addEventListener('click', () => this.slideItem(this.currentItemIndex - 1));
-      nextButton.addEventListener('click', () => this.slideItem(this.currentItemIndex + 1));
+      this.prevButton.addEventListener('click', () => this.slideItem(this.currentItemIndex - 1));
+      this.nextButton.addEventListener('click', () => this.slideItem(this.currentItemIndex + 1));
    }
 
    setThePoolInRandom() {
@@ -37,7 +45,7 @@ class Carousel {
    loadItem(poolItem, callback) {
       // Create HTML structure
       const newItem = document.createElement('div');
-      newItem.className = 'lcas-carousel-item';
+      newItem.className = this.itemClass;
       const link = document.createElement('a');
       link.target = "_blank";
       const img = document.createElement('img');
@@ -67,19 +75,16 @@ class Carousel {
    }
 
    updateControls() {
-      const prevControl = this.element.querySelector('.lcas-prev');
-      const nextControl = this.element.querySelector('.lcas-next');
-
       if (this.currentItemIndex === 0) {
-         prevControl.style.display = 'none';
+         this.prevButton.style.display = 'none';
       } else {
-         prevControl.style.display = 'flex';
+         this.prevButton.style.display = 'flex';
       }
 
       if (this.remainingItemsPool.length === 0) {
-         nextControl.style.display = 'none';
+         this.nextButton.style.display = 'none';
       } else {
-         nextControl.style.display = 'flex';
+         this.nextButton.style.display = 'flex';
       }
    }
 
@@ -126,7 +131,7 @@ class Carousel {
 }
 
 window.onload = () => {
-   document.querySelectorAll('.lcas-carousel').forEach(carouselElement => {
+   document.querySelectorAll('.lcas-carousel-widget').forEach(carouselElement => {
       new Carousel(carouselElement);
    });
 }
