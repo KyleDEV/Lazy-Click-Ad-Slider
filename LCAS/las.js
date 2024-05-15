@@ -67,11 +67,12 @@ class Carousel {
    }
 
    loadInitialItem() {
+      this.showIndicator(); // Show indicator before loading the initial item
       const firstPoolItem = this.remainingItemsPool[this.currentItemIndex];
       this.loadItem(firstPoolItem, (loadedItem_callback) => {
          this.carouselInner.appendChild(loadedItem_callback);
-         this.carouselInner.removeChild(this.carouselInner.firstChild);
          this.loadedItems.add(this.currentItemIndex);  // Mark the first item as loaded
+         this.hideIndicator(); // Hide indicator after loading the item
          this.updateControls();
       });
    }
@@ -105,25 +106,27 @@ class Carousel {
    loadNewItem(index) {
       const poolItem = this.remainingItemsPool[index];
       this.showIndicator();
-      this.loadItem(poolItem, (loadedItem_callback) => {
-         this.carouselInner.appendChild(loadedItem_callback);
-         this.loadedItems.add(index);
+      setTimeout(() => {
+         this.loadItem(poolItem, (loadedItem_callback) => {
+            this.carouselInner.appendChild(loadedItem_callback);
+            this.loadedItems.add(index);
+            this.currentItemIndex = index;
+            const offset = -this.currentItemIndex * 100;
+            this.carouselInner.style.transform = `translateX(${offset}%)`;
+            this.isSliding = false;
+            this.hideIndicator();
+            this.updateControls();
+         });
+      }, 500); // Simulate network delay
+   }
+
+   slideToLoadedItem(index) {
+
          this.currentItemIndex = index;
          const offset = -this.currentItemIndex * 100;
          this.carouselInner.style.transform = `translateX(${offset}%)`;
          this.isSliding = false;
-         this.hideIndicator();
          this.updateControls();
-      });
-   }
-
-   slideToLoadedItem(index) {
-      this.currentItemIndex = index;
-      const offset = -this.currentItemIndex * 100;
-      this.carouselInner.style.transform = `translateX(${offset}%)`;
-      this.isSliding = false;
-      this.hideIndicator();
-      this.updateControls();
    }
 
    slideItem(index) {
