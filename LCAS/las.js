@@ -8,16 +8,6 @@ function initializeItems() {
    remainingItemsPool = [...items];
 }
 
-function getRandomItem() {
-   if (remainingItemsPool.length === 0) {
-      return null;
-   }
-   const randomIndex = Math.floor(Math.random() * remainingItemsPool.length);
-   const item = remainingItemsPool[randomIndex];
-   remainingItemsPool.splice(randomIndex, 1);
-   return item;
-}
-
 function showIndicator() {
    const indicator = document.querySelector('.lcas-indicator');
    if (indicator) {
@@ -54,17 +44,17 @@ function updateControls() {
    const nextControl = document.querySelector('.lcas-next');
 
    // Show or hide the previous button based on the current item index
-   if (currentItemIndex === 0 && remainingItemsPool.length > 0) {
+   if (currentItemIndex === 0) {
       prevControl.style.display = 'none';
    } else {
-      prevControl.style.display = 'flex';  // Ensure it uses flex display
+      prevControl.style.display = 'flex';
    }
 
    // Show or hide the next button based on the remaining items pool
    if (remainingItemsPool.length === 0) {
       nextControl.style.display = 'none';
    } else {
-      nextControl.style.display = 'flex';  // Ensure it uses flex display
+      nextControl.style.display = 'flex';
    }
 }
 
@@ -114,15 +104,18 @@ function slideItem(index) {
 
 window.onload = () => {
    initializeItems();
-   const initialItem = getRandomItem();
-   if (initialItem) {
+   if (remainingItemsPool.length > 0) {
+      const initialItem = remainingItemsPool.shift();
       loadItem(initialItem, (loadedItem) => {
          const carouselInner = document.querySelector('.lcas-carousel-inner');
          carouselInner.appendChild(loadedItem);
          carouselInner.removeChild(carouselInner.firstChild);
          hideIndicator();
-         currentItemIndex = items.indexOf(initialItem);
+         loadedItems.add(0);  // Mark the first item as loaded
          updateControls();
       });
+   } else {
+      // In case there are no items, ensure the controls are updated
+      updateControls();
    }
 }

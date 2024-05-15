@@ -56,7 +56,7 @@
     transform: translateY(-50%);
     display: flex;
     align-items: center;
-
+    justify-content: center;
     font-size: 2rem;
     background: rgba(0, 0, 0, 0.5);
     color: white;
@@ -68,8 +68,8 @@
 
 .lcas-prev {
     left: 0px;
-    /* Initially hide the previous button */
     display: none;
+    /* Initially hide the previous button */
     justify-content: left;
     padding-left: 15px;
 }
